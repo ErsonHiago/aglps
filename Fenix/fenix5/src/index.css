@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+
+    /* Custom colors for the casino theme */
+    --orange-primary: 22 100% 50%;
+    --orange-secondary: 15 100% 55%;
+    --red-primary: 0 85% 60%;
+    --red-secondary: 350 85% 65%;
+    --dark-bg: 0 0% 8%;
+    --card-dark: 0 0% 12%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+@layer components {
+  /* Gradient Radiant Text Effect for "APOSTOU, GANHOU!" */
+  .gradient-radiant-text {
+    background: linear-gradient(45deg, 
+      hsl(var(--orange-primary)), 
+      hsl(var(--orange-secondary)), 
+      hsl(var(--orange-primary))
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 
+      0 0 2px hsl(var(--orange-primary) / 0.8),
+      0 0 4px hsl(var(--orange-primary) / 0.6),
+      0 0 6px hsl(var(--orange-primary) / 0.4),
+      0 0 8px hsl(var(--orange-primary) / 0.2);
+  }
+
+  /* Fallback for browsers that don't support background-clip: text */
+  @supports not (background-clip: text) {
+    .gradient-radiant-text {
+      color: hsl(var(--orange-primary));
+      background: none;
+      text-shadow: 
+        0 0 2px hsl(var(--orange-primary) / 0.8),
+        0 0 4px hsl(var(--orange-primary) / 0.6),
+        0 0 6px hsl(var(--orange-primary) / 0.4),
+        0 0 8px hsl(var(--orange-primary) / 0.2);
+    }
+  }
+
+  .casino-button {
+    @apply relative overflow-hidden rounded-lg px-8 py-4 text-white font-bold uppercase tracking-wider transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--orange-primary)), hsl(var(--orange-secondary)));
+    box-shadow: 
+      0 8px 25px hsl(var(--orange-primary) / 0.4),
+      0 4px 15px hsl(var(--orange-primary) / 0.3);
+  }
+
+  .casino-button:hover {
+    @apply transform scale-105;
+    box-shadow: 
+      0 12px 35px hsl(var(--orange-primary) / 0.6),
+      0 6px 25px hsl(var(--orange-primary) / 0.4);
+  }
+
+  .hero-bg {
+    background: radial-gradient(ellipse at center, hsl(var(--orange-primary) / 0.1) 0%, hsl(var(--dark-bg)) 70%);
+  }
+}
